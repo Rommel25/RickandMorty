@@ -155,8 +155,7 @@ export const Style = {
 
 
 
-export function usePersonnages() {
-
+export function getAllPersonnage() {
     return {
         getPersonnages: async (ids) => {
             return await (await fetch(`${APIKEY}/character/[${ids.join(",")}]`)).json();

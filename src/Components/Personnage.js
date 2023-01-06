@@ -2,42 +2,48 @@ import styled from "styled-components";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getEpisodes} from "./Episode";
-import {Titre, MyLink, usePersonnages, PersoContainer, ContainerPersonnage, SousTitre, StyleCartePersonnage} from "../Utils";
-
+import {
+    Titre,
+    MyLink,
+    getAllPersonnage,
+    PersoContainer,
+    ContainerPersonnage,
+    SousTitre,
+    StyleCartePersonnage
+} from "../Utils";
 
 
 const Carte = ({personnage}) => (
-  <StyleCartePersonnage>
-    <MyLink to={`/personnages/${personnage.id}`}>
-      {personnage.name}
-    </MyLink>
-    <img src={personnage.image} alt={""}/>
-    <p>Sexe : {personnage.gender}</p>
-    <p>Espèce : {personnage.species}</p>
-    {personnage.type && <p>Type : {personnage.type}</p>}
-      <p>Status: {personnage.status}</p>
-  </StyleCartePersonnage>
+    <StyleCartePersonnage>
+        <MyLink to={`/personnages/${personnage.id}`}>
+            {personnage.name}
+        </MyLink>
+        <img src={personnage.image} alt={""}/>
+        <p>Sexe : {personnage.gender}</p>
+        <p>Espèce : {personnage.species}</p>
+        {personnage.type && <p>Type : {personnage.type}</p>}
+        <p>Status: {personnage.status}</p>
+    </StyleCartePersonnage>
 );
 
 
-
 export const PetiteCarte = ({perso, card}) => card ? (
-  <Carte personnage={perso}/>
+    <Carte personnage={perso}/>
 ) : (
-  <PersoContainer>
-    <img src={perso.image} style={{width: "250px", height: "250px"}}/>
-    <div>
-      <MyLink to={`/personnages/${perso.id}`}>{perso.name}</MyLink>
-      <p>{perso.species}</p>
-    </div>
-  </PersoContainer>
+    <PersoContainer>
+        <img src={perso.image} style={{width: "250px", height: "250px"}}/>
+        <div>
+            <MyLink to={`/personnages/${perso.id}`}>{perso.name}</MyLink>
+            <p>{perso.species}</p>
+        </div>
+    </PersoContainer>
 );
 //Pour gérer les perso mis en fav
 //Coeur vide si pas fav, coeur rouge plein si fav
 
 
 export const Personnage = () => {
-    const {getPersonnages} = usePersonnages();
+    const {getPersonnages} = getAllPersonnage();
     const {id} = useParams();
     const [perso, setPerso] = useState(null);
     const [episodes, setEpisodes] = useState([]);
@@ -54,12 +60,14 @@ export const Personnage = () => {
     }, [id]);
     return (
         <>
-            {perso &&  (
+            {perso && (
                 <ContainerPersonnage>
                     <Link to={`/personnages/${perso.id}`}><Titre>{perso.name}</Titre></Link>
-                        <img src={perso.image} alt={""} style={{maxWidth: "300px", height: "auto" }}/>
-                    <div style={{display: "flex",
-                        flexDirection: "column"}}>
+                    <img src={perso.image} alt={""} style={{maxWidth: "300px", height: "auto"}}/>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column"
+                    }}>
                         <div style={{gridColumn: "span 2"}}>
                             <Titre>Infos :</Titre>
                             <SousTitre>Nom</SousTitre>
@@ -75,12 +83,14 @@ export const Personnage = () => {
                                 </>
                             )}
                             <SousTitre>Origine</SousTitre>
-                        <p>{perso.origin.name}</p>
+                            <p>{perso.origin.name}</p>
 
                         </div>
                     </div>
-                        <div style={{display: "flex",
-                            flexDirection: "column"}}>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column"
+                    }}>
                         {episodes?.length > 0 && (
                             <div>
                                 <Titre>Présent des les épisodes : </Titre>
@@ -91,7 +101,7 @@ export const Personnage = () => {
                                 </div>
                             </div>
                         )}
-                        </div>
+                    </div>
 
                 </ContainerPersonnage>
             )}
