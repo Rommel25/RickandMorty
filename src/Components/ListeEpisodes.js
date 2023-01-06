@@ -3,10 +3,6 @@ import {PetiteCarte} from "./Personnage";
 import { Titre, usePersonnages, ButtonNavigation, ListContainer, ContainerListeEpisode} from "../Utils";
 const APIKEY = "https://rickandmortyapi.com/api";
 
-
-
-
-
 const List = ({episodes}) => {
   return (
     <ListContainer>
@@ -24,19 +20,12 @@ const List = ({episodes}) => {
 
 
 export const Episode = ({episode, defaultOpen}) => {
-  const [open, setOpen] = useState(!!defaultOpen);
   const width = 300;
   return (
       <div>
-      <Titre
-        onClick={() => setOpen(o => !o || defaultOpen)}
-        style={{cursor: "pointer"}}
-        small={!defaultOpen}
-
-      >
+      <Titre>
         {episode.episode} - {episode.name}
       </Titre>
-
         <div style={{margin: "5px", justifyContent: "center", alignItems: "center"}}>
           <p>Date de sortie: {episode.air_date}</p>
           <p>Liste des  {episode.characters.length} personnages :</p>
@@ -83,7 +72,7 @@ export const ListeEpisodes = () => {
   const [episodes, setEpisodes] = useState([]);
   const [info, setInfo] = useState({});
   useEffect(() => {
-    getData().then(({info, results}) => {
+    getData().then(({results}) => {
       setEpisodes(results);
       setInfo(info);
     });

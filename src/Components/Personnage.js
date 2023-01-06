@@ -86,7 +86,7 @@ export const Personnage = () => {
                                 <Titre>Présent des les épisodes : </Titre>
                                 <div style={{display: "flex", flexDirection: "column"}}>
                                     {episodes.map((ep) => (
-                                        <MyLink style={{marginBottom: ".5rem"}} to={`/episodes/`} key={ep.id}>{ep.episode} - {ep.name} ({ep.air_date})</MyLink>
+                                        <p>{ep.episode} - {ep.name} ({ep.air_date})</p>
                                     ))}
                                 </div>
                             </div>

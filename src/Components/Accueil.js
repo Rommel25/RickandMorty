@@ -7,7 +7,7 @@ const APIKEY = "https://rickandmortyapi.com/api/character";
 export const Accueil = () => {
   const {getPersonnages} = usePersonnages();
   const [randoms, setRandoms] = useState([]);
-  const [loading, setLoading] = useState({favoris: false, persos: false});
+  const [loading, setLoading] = useState([]);
 
   //Utilise l'API pour récupérer les personnages, 5 nbr randoms, on ajoutes ces 5 perso dans notre var random
   const getRandomCharacters = async () => {
