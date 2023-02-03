@@ -2,6 +2,9 @@ import styled from "styled-components";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getEpisodes} from "./Episode";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
 import {
     Titre,
     MyLink,
@@ -13,7 +16,7 @@ import {
 } from "../Utils";
 
 
-const Carte = ({personnage}) => (
+const Carte = ({personnage, isLoggedIn, isFavourite, handleFavourite}) => (
     <StyleCartePersonnage>
         <MyLink to={`/personnages/${personnage.id}`}>
             {personnage.name}
@@ -23,8 +26,17 @@ const Carte = ({personnage}) => (
         <p>Espèce : {personnage.species}</p>
         {personnage.type && <p>Type : {personnage.type}</p>}
         <p>Status: {personnage.status}</p>
+        {isLoggedIn && (
+            <FontAwesomeIcon
+                icon={faHeart}
+                style={{cursor: "pointer"}}
+                onClick={handleFavourite}
+                className={`heart-icon ${isFavourite ? "favourite" : ""}`}
+            />
+        )}
     </StyleCartePersonnage>
 );
+
 
 
 export const PetiteCarte = ({perso, card}) => card ? (
@@ -40,6 +52,32 @@ export const PetiteCarte = ({perso, card}) => card ? (
 );
 //Pour gérer les perso mis en fav
 //Coeur vide si pas fav, coeur rouge plein si fav
+
+const Outline = styled.div`
+  padding: 1rem 1.7rem;
+  border: 1px solid;
+  border-radius: 12px;
+  margin: 1rem;
+  text-align: center;
+  > h1{
+    margin: 0;
+    padding: 1rem 1rem 1.5rem 1rem;
+    border-bottom: 1px solid;
+  }
+  >p {
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+const CustomLink = styled(Link)`
+  text-decoration: underline;
+  color: green;
+  &:hover {
+    color: blue;
+  }
+  display: inline;
+`;
 
 
 export const Personnage = () => {
@@ -92,14 +130,15 @@ export const Personnage = () => {
                         flexDirection: "column"
                     }}>
                         {episodes?.length > 0 && (
-                            <div>
-                                <Titre>Présent des les épisodes : </Titre>
+                            <Outline style={{gridColumn: "span 2"}} >
+                                <Titre style={{marginBottom: "1.2rem"}} small>Apparitions</Titre>
                                 <div style={{display: "flex", flexDirection: "column"}}>
-                                    {episodes.map((ep) => (
-                                        <p>{ep.episode} - {ep.name} ({ep.air_date})</p>
-                                    ))}
+                                    {episodes.map((e) => (
+                                        <CustomLink style={{marginBottom: ".5rem"}} to={`/episode/${e.id}`} key={e.id}>{e.name}</CustomLink>
+
+                                        ))}
                                 </div>
-                            </div>
+                            </Outline>
                         )}
                     </div>
 

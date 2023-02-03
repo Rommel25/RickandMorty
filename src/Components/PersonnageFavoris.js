@@ -12,4 +12,5 @@ export const PersonnageFavoris = () => {
         </ContainerPersoFav>
     );
 }
+export default PersonnageFavoris
 

@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 const APIKEY = "https://rickandmortyapi.com/api/episode/";
 
 
-export const getEpisodes = async (ids) => (await fetch(APIKEY+`[${ids.join(",")}]`)).json();
+export const getEpisodes = async (ids) => (await fetch(`https://rickandmortyapi.com/api/episode/[${ids.join(",")}]`)).json();
 
 export const Episode = () => {
   const {id} = useParams();

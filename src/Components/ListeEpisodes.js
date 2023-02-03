@@ -35,6 +35,7 @@ export const Episode = ({episode, defaultOpen}) => {
     );
 };
 
+
 const PersonnagesPresent = ({urls, card}) => {
     const [personnages, setPersonnages] = useState([]);
     const [loading, setLoading] = useState(false);

@@ -2,8 +2,6 @@ import {useEffect, useState} from "react";
 import {Titre, getAllPersonnage, AccueilContainer, CarteStyle} from "../Utils";
 import {PetiteCarte} from "./Personnage";
 
-const APIKEY = "https://rickandmortyapi.com/api/character";
-
 
 export const Accueil = () => {
     const {getPersonnages} = getAllPersonnage();
@@ -13,11 +11,9 @@ export const Accueil = () => {
     //Utilise l'API pour récupérer les personnages, 5 nbr randoms, on ajoutes ces 5 perso dans notre var random
     const getRandomCharacters = async () => {
         setLoading(l => ({...l, persos: true}));
-        const {info, results} = (await fetch(APIKEY).then(r => r.json()));
-        const {count} = info;
         const randoms = [];
         for (let i = 0; i < 5; i++) {
-            const nbr = Math.floor(Math.random() * count);
+            const nbr = Math.floor(Math.random() * 826);
             randoms.push(nbr);
         }
         const persos = await getPersonnages(randoms);
