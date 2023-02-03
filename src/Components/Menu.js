@@ -8,6 +8,8 @@ const MyMenu = () => (
     <Link to="/personnages">Voir tout les personnages</Link>
     <Link to="/episodes">Voir tout les épisodes</Link>
     <Link to="/favoris">Voir mes personnages favoris</Link>
+    <Link to={"/auth"}>Inscription</Link>
+    <Link to={"/auth/login"}>Connexion</Link>
   </Nav>
 );
 
