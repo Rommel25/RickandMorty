@@ -1,8 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+import React from 'react';
+import {Accueil} from './Components/Accueil';
+import {MemoryRouter} from "react-router-dom";
+
+describe('Assert PersonnageFavoris composant render', () => {
+    it("Should render without crash", () => {
+        render(
+            <MemoryRouter>
+                <Accueil/>
+            </MemoryRouter>
+        )
+    })
+})

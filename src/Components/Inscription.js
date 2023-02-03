@@ -1,128 +1,9 @@
 import React, {useState} from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import {  createUserWithEmailAndPassword  } from 'firebase/auth';
 import { auth } from '../Firebase/init';
 
-// export const SignupPage = () => {
-//     const navigate = useNavigate();
-//
-//     const [email, setEmail] = useState('')
-//     const [password, setPassword] = useState('');
-//
-//     const onSubmit = async (e) => {
-//         e.preventDefault()
-//
-//         await createUserWithEmailAndPassword(auth, email, password)
-//             .then((userCredential) => {
-//                 // Signed in
-//                 const user = userCredential.user;
-//                 console.log(user);
-//                 navigate("/login")
-//                 // ...
-//             })
-//             .catch((error) => {
-//                 const errorCode = error.code;
-//                 const errorMessage = error.message;
-//                 console.log(errorCode, errorMessage);
-//                 // ..
-//             });
-//
-//
-//     }
 
-// export const SignupPage = () => {
-//     const navigate = useNavigate();
-//
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-//
-//     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-//     const passwordRegex = /^.{8,}$/;
-//
-//     const onSubmit = async (e) => {
-//         e.preventDefault();
-//
-//         if (!emailRegex.test(email)) {
-//             console.log("L'email n'est pas valide");
-//             return;
-//         }
-//
-//         if (!passwordRegex.test(password)) {
-//             console.log("Le mot de passe doit contenir au moins 8 caractères");
-//             return;
-//         }
-//
-//         await createUserWithEmailAndPassword(auth, email, password)
-//             .then((userCredential) => {
-//                 const user = userCredential.user;
-//                 console.log(user);
-//                 navigate("/auth/login");
-//             })
-//             .catch((error) => {
-//                 const errorCode = error.code;
-//                 const errorMessage = error.message;
-//                 console.log(errorCode, errorMessage);
-//             });
-//     };
-//
-//     return (
-//         <main>
-//         <section style={{padding: '50px', borderRadius: '10px'}}>
-//             <div style={{textAlign: 'center'}}>
-//                 <h1 style={{fontSize: '2rem'}}> FocusApp </h1>
-//                 <form style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-//                     <div style={{margin: '10px'}}>
-//                         <label htmlFor="email-address">
-//                             Email address
-//                         </label>
-//                         <input
-//                             type="email"
-//                             label="Email address"
-//                             value={email}
-//                             onChange={(e) => setEmail(e.target.value)}
-//                             required
-//                             placeholder="Email address"
-//                             style={{width: '100%', padding: '10px', borderRadius: '5px', margin: '10px 0'}}
-//                         />
-//                     </div>
-//
-//                     <div style={{margin: '10px'}}>
-//                         <label htmlFor="password">
-//                             Password
-//                         </label>
-//                         <input
-//                             type="password"
-//                             label="Create password"
-//                             value={password}
-//                             onChange={(e) => setPassword(e.target.value)}
-//                             required
-//                             placeholder="Password"
-//                             style={{width: '100%', padding: '10px', borderRadius: '5px', margin: '10px 0'}}
-//                         />
-//                     </div>
-//
-//                     <button
-//                         type="submit"
-//                         onClick={onSubmit}
-//                         style={{width: '100%', padding: '10px', borderRadius: '5px', margin: '10px 0', background: 'green', color: 'white', cursor: 'pointer'}}
-//                     >
-//                         Sign up
-//                     </button>
-//
-//                 </form>
-//
-//                 <p style={{margin: '10px'}}>
-//                     Already have an account?{' '}
-//                     <NavLink to="auth/login" style={{color: 'blue'}}>
-//                         Sign in
-//                     </NavLink>
-//                 </p>
-//             </div>
-//         </section>
-// </main>
-//
-// )
-// }
 export const SignupPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -154,12 +35,14 @@ export const SignupPage = () => {
     };
 
     return (
-        <main>
-            <section>
-                <div>
+        <main style={{textAlign: "center"}}>
+            <section style={{width: "500px", margin: "0 auto"}}>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+                <div style={{backgroundColor: "white", padding: "20px", borderRadius: "10px"}}>
                     <div>
-                        <h1> FocusApp </h1>
-                        <form>
+                        <h1> Inscription </h1>
+                        <form style={{textAlign: "left"}}>
                             <div>
                                 <label htmlFor="email-address">
                                     Email address
@@ -169,6 +52,7 @@ export const SignupPage = () => {
                                     label="Email address"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                    style={{width: "100%", padding: "10px", margin: "10px 0"}}
                                     required
                                     placeholder="Email address"
                                 />
@@ -183,12 +67,13 @@ export const SignupPage = () => {
                                     label="Create password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    style={{width: "100%", padding: "10px", margin: "10px 0"}}
                                     required
                                     placeholder="Password"
                                 />
                             </div>
 
-                            <button type="submit" onClick={onSubmit}>
+                            <button type="submit" onClick={onSubmit} style={{width: "100%", backgroundColor: "#5cb85c", color: "white", padding: "10px", borderRadius: "5px", cursor: "pointer", marginTop: "20px"}}>
                                 Sign up
                             </button>
                         </form>
@@ -200,8 +85,8 @@ export const SignupPage = () => {
                         )}
 
                         <p>
-                            Already have an account?{' '}
-                            <NavLink to="/login">
+                            Déja un compte?{' '}
+                            <NavLink to="/auth/login">
                                 Sign in
                             </NavLink>
                         </p>

@@ -29,8 +29,9 @@ export const Login = () => {
         <>
             <main style={{textAlign: "center"}}>
                 <section style={{width: "500px", margin: "0 auto"}}>
-                    <br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     <div style={{backgroundColor: "white", padding: "20px", borderRadius: "10px"}}>
+                        <h1> Connexion </h1>
 
                         <form style={{textAlign: "left"}}>
                             <div>
